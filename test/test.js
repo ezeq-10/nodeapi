@@ -4,7 +4,30 @@ var request = require('supertest');
 var mongoose = require('mongoose');
 
 var url = 'http://localhost:3000';
+var contents = require('../models/contents.js');
 
+
+function createData(cid, id, lang, content, callback) {
+	
+	var init_content = new contents({
+		cid:    	cid,
+		id:     	id,
+		lang:		lang,
+		content:  	content
+	});
+	
+	init_content.save(function(err) {
+		if(!err) 
+			return callback(null);
+		else
+			return callback(err);
+		
+	});	
+}
+
+
+
+// Test Suite
 describe('Test Suite', function() {
 	
     before(function(done) {
@@ -12,6 +35,13 @@ describe('Test Suite', function() {
             if (err) throw err;
             done();
         });
+    });
+    
+    before(function(done) {
+        createData(1,1,'es','init content', function(err) {
+			if (err) throw err;
+            done();		
+		});
     });
     
     describe('Routing', function() {
