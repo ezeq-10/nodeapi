@@ -12,7 +12,7 @@ Download and enter sudo npm install
 
 Step 2
 For test suite:
-sudo npm install mocha -g && sudo npm install supertest
+sudo npm install mocha supertest -g
 
 Step 3
 Run as a daemon:
